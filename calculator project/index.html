@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator app</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="screen">
+            <div id="value-display"></div>
+            <div id="result-display"></div>
+        </div>
+        <div class="scientific">
+            <button>sin</button>
+            <button>cos</button>
+            <button>tan</button>
+            <button>log</button>
+            <button>ln</button>
+            <button>^</button>
+            <button>√</button>
+            <button>(</button>
+            <button>)</button>
+        </div>
+        <div class="buttons">
+            <div class="row">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>*</button>
+            </div>
+            <div class="row">
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>-</button>
+            </div>
+            <div class="row">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>+</button>
+            </div>
+            <div class="row">
+                <button>0</button>
+                <button>C</button>
+                <button>=</button>
+                <button>/</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const valueDisplay = document.getElementById("value-display");
+        const resultDisplay = document.getElementById("result-display");
+        const buttons = document.querySelectorAll("button");
+
+        let expression = "";
+
+        buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const val = button.innerText;
+
+            if (val === "C") {
+            // Clear everything
+            expression = "";
+            valueDisplay.innerText = "";
+            resultDisplay.innerText = "";
+            } 
+            else if (val === "=") {
+            try {
+                // Prepare the expression for evaluation
+                let exp = expression
+                // square root → Math.sqrt
+                .replace(/√/g, "Math.sqrt")
+                // exponentiation
+                .replace(/\^/g, "**")
+                // trig (degrees → radians)
+                .replace(/sin\(/g, "Math.sin((Math.PI/180)*")
+                .replace(/cos\(/g, "Math.cos((Math.PI/180)*")
+                .replace(/tan\(/g, "Math.tan((Math.PI/180)*")
+                // logs
+                .replace(/log\(/g, "Math.log10(")
+                .replace(/ln\(/g, "Math.log(");
+
+                let result = eval(exp);
+                resultDisplay.innerText = result;
+            } catch {
+                resultDisplay.innerText = "Error";
+            }
+            } 
+            else if (val === "( )") {
+            // Insert empty parentheses
+            expression += "()";
+            valueDisplay.innerText = expression;
+            } 
+            else if (["sin","cos","tan","log","ln"].includes(val)) {
+            // Auto-insert "(" after functions
+            expression += val + "(";
+            valueDisplay.innerText = expression;
+            } 
+            else {
+            // Normal input (numbers, operators, etc.)
+            expression += val;
+            valueDisplay.innerText = expression;
+            }
+        });
+        });
+
+    </script>
+    
+</body>
+</html>
