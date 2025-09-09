@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(48, 78, 248);
+        }
+        form{
+            width: 400px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 30px 25px;
+            background: #fff;
+            border-radius: 6px;
+            gap: 20px;
+        }
+        legend{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        legend span{
+            padding-bottom: 1px;
+            border-bottom: 3px solid rgb(48, 78, 248);
+        }
+        input{
+            padding: 8px 16px;
+            border: 1px outset rgb(188, 188, 252);
+            border-radius: 4px;
+            color: rgb(27, 27, 27);
+            outline: none;
+        }
+        label{
+            color: rgb(188, 188, 252);
+            font-size: 14px;
+        }
+        input[type="submit"]{
+            background: rgb(107, 121, 252);
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:disabled{
+            background: rgb(179, 179, 255);
+            cursor: not-allowed;
+        }
+        p{
+            text-align: center;
+        }
+        p a{
+            text-decoration: none;
+            margin-left: 2px;
+            columns: rgb(107, 121, 252);
+        }
+
+        .error{
+            font-size: 12px;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form action="#">
+        <legend>
+            <span>Re</span>gistration
+        </legend>
+        <!-- name -->
+        <div class="error"></div>
+        <input type="text" name="name" placeholder="Enter your name" id="name">
+        <!-- email -->
+        <div class="error"></div>
+        <input type="email" name="email" placeholder="Enter your email" id="email">
+        <!-- password -->
+        <div class="error"></div>
+        <input type="password" name="password" placeholder="Create password" id="password">
+        <!-- confirm password -->
+        <div class="error"></div>
+        <input type="password" name="password" placeholder="Confirm password" id="cpassword">
+        <!-- checked -->
+        <label for="terms">
+            <input type="checkbox" name="terms" id="terms">
+            I accept all terms & conditions
+        </label>
+        <!-- submit button -->
+        <input type="submit" value="Register Now" id="register" disabled>
+        <!-- login link -->
+        <p>Already have an account? <a href="login.html">Login now</a></p>
+    </form>
+
+    <script>
+    // A helper function that returns the DOM element by its ID
+    function login(id) {
+        return document.getElementById(id);
+    }
+
+    // Getting references to all input fields and the register button
+    let name = login("name");
+    let email = login("email");
+    let password = login("password");
+    let cpassword = login("cpassword");   // confirm password field
+    let terms = login("terms");           // checkbox for agreeing to terms
+    let register = login("register");     // register button
+
+    // Disable/enable the register button depending on whether terms are accepted
+    terms.addEventListener("change", function() {
+        register.disabled = !this.checked;
+    });
+
+    // Adding a click event listener on the register button
+    register.addEventListener("click", function(e){
+        // Collecting all elements with the class "error" (for showing error messages)
+        let error = document.querySelectorAll(".error");
+
+        // -------- Name Validation --------
+        if (name.value == "") {
+            error[0].innerHTML = "Name is Required";  // show error if empty
+            e.preventDefault(); // stop form submission
+        } else {
+            error[0].innerHTML = "";  // clear error if valid
+        }
+
+        // -------- Email Validation --------
+        // Regex pattern to check proper email format
+        let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (email.value == "") {
+            error[1].innerHTML = "Email is Required";  
+            e.preventDefault();
+        } else if (!email.value.match(emailRegex)) {
+            error[1].innerHTML = "Email is Invalid";  
+            e.preventDefault();
+        } else {
+            error[1].innerHTML = "";  // clear error if valid
+        }
+
+        // -------- Password Validation --------
+        // Must contain at least: 6 chars, one uppercase, one lowercase, and one number
+        let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+
+        if (password.value == "") {
+            error[2].innerHTML = "Password is Required";
+            e.preventDefault();
+        } else if (!password.value.match(passwordRegex)) {
+            error[2].innerHTML = "Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one number.";
+            e.preventDefault();
+        } else {
+            error[2].innerHTML = "";  // clear error if valid
+        }
+
+        // -------- Confirm Password Validation --------
+        if (cpassword.value == "") {
+            error[3].innerHTML = "Confirm Password is Required";
+            e.preventDefault();
+        } else if (cpassword.value != password.value) {
+            error[3].innerHTML = "Password does not match";
+            e.preventDefault();
+        } else {
+            error[3].innerHTML = "";  // clear error if valid
+        }
+    });
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(48, 78, 248);
+        }
+        form{
+            width: 400px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 30px 25px;
+            background: #fff;
+            border-radius: 6px;
+            gap: 20px;
+        }
+        legend{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        legend span{
+            padding-bottom: 1px;
+            border-bottom: 3px solid rgb(48, 78, 248);
+        }
+        input{
+            padding: 8px 16px;
+            border: 1px outset rgb(188, 188, 252);
+            border-radius: 4px;
+            color: rgb(27, 27, 27);
+            outline: none;
+        }
+        label{
+            color: rgb(188, 188, 252);
+            font-size: 14px;
+        }
+        input[type="submit"]{
+            background: rgb(107, 121, 252);
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        p{
+            text-align: center;
+        }
+        p a{
+            text-decoration: none;
+            margin-left: 2px;
+            columns: rgb(107, 121, 252);
+        }
+
+        .error{
+            font-size: 12px;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form action="#">
+        <legend>
+            <span>Re</span>gistration
+        </legend>
+        
+        <!-- email -->
+        <div class="error"></div>
+        <input type="email" name="email" placeholder="Enter your email" id="email">
+        <!-- password -->
+        <div class="error"></div>
+        <input type="password" name="password" placeholder="Create password" id="password">
+        
+        <!-- submit button -->
+        <input type="submit" value="Login Now" id="register">
+        <!-- login link -->
+        <p>Don't have an account? <a href="homework.html">Signup now</a></p>
+    </form>
+
+    <script>
+    // A helper function that takes an element id and returns the corresponding DOM element
+    function login(id) {
+        return document.getElementById(id);
+    }
+
+    // Getting references to input fields and button using their ids
+    let email = login("email");
+    let password = login("password");
+    let register = login("register");
+
+    // A flag to check if the form validation is successful
+    let log = false;
+
+    // Adding a click event listener to the register button
+    register.addEventListener("click", function(e){
+        // Prevents form submission by default
+        e.preventDefault();
+
+        // Collecting all elements with the class "error" (used to display error messages)
+        let error = document.querySelectorAll(".error");
+
+        // -------- Email Validation --------
+        // Regex pattern to validate email format
+        let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (email.value == "") {
+            // If email field is empty
+            error[0].innerHTML = "Email is Required";
+            log = false;
+            e.preventDefault();
+        } else if (!email.value.match(emailRegex)) {
+            // If email format is invalid
+            error[0].innerHTML = "Email is Invalid";
+            log = false;
+            e.preventDefault();
+        } else {
+            // If email passes validation, clear the error message
+            error[0].innerHTML = "";
+            log = true;
+        }
+
+        // -------- Password Validation --------
+        // Regex pattern: at least 6 characters, one uppercase, one lowercase, and one number
+        let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+
+        if (password.value == "") {
+            // If password field is empty
+            error[1].innerHTML = "Password is Required";
+            log = false;
+            e.preventDefault();
+        } else if (!password.value.match(passwordRegex)) {
+            // If password does not meet requirements
+            error[1].innerHTML = "Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one number.";
+            log = false;
+            e.preventDefault();
+        } else {
+            // If password passes validation, clear the error message
+            error[1].innerHTML = "";
+            log = true;
+        }
+
+        // -------- Final Check --------
+        // If both email and password validations are successful
+        if (log == true) {
+            // Redirect user to index.html
+            window.location.href = "index.html"; 
+        }
+    })
+</script>
+
+    
+</body>
+</html>
