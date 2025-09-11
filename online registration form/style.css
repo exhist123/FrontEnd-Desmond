@@ -1,0 +1,159 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a29bfe, #6c5ce7); /* lavender → deep purple */
+  padding: 20px;
+}
+
+section {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+}
+
+header {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2d3436;
+}
+
+/* Input fields */
+.input-box {
+  margin-bottom: 10px;
+}
+
+.input-box label {
+  font-size: 15px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: #2d3436;
+}
+
+.input-box input,
+.select-box select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #dcdde1;
+  border-radius: 2px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-box input:focus,
+.select-box select:focus {
+  border-color: #6c5ce7; /* main purple */
+  box-shadow: 0 0 5px rgba(108, 92, 231, 0.4); /* subtle purple glow */
+}
+
+/* Input group  tel and date of birth*/
+.input-group {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.input-group .input-box {
+    flex: 1;
+}
+
+/* Gender box */
+.gender-box {
+  margin-bottom: 18px;
+}
+
+.gender-box h3 {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #2d3436;
+}
+
+.gender-option {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.gender {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+input[type="radio"] {
+  accent-color: #6c5ce7; /* purple radio buttons */
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Address section */
+.address .column {
+  display: flex;
+  gap: 15px;
+  margin-top: 12px;
+}
+
+.address > input {
+ margin-bottom: 10px;
+}
+
+.address .column input,
+.address .select-box {
+  flex: 1;
+}
+
+/* select styles */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    color: #555; /* neutral text */
+    /* SVG arrow, colored purple */
+    background: url("data:image/svg+xml;utf8,<svg fill='%236c5ce7' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>")
+    no-repeat right 12px center;
+    background-size: 20px;
+    padding-right: 30px; /* add space so text doesn't overlap arrow */
+}
+
+/* error message styles */
+.error-message{
+  font-size: 12px;
+  color: red;
+  padding: 4px 0 8px 0;
+}
+
+/* Submit button */
+button {
+  width: 100%;
+  padding: 10px;
+  background: #6c5ce7; /* main purple */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #5a42d1; /* darker purple on hover */
+}

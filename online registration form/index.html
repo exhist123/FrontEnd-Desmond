@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.20/build/css/intlTelInput.css" />
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.20/build/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.20/build/js/utils.js"></script>
+</head>
+<body>
+    <section>
+        <header>Registration Form</header>
+        <form action="#">
+            <!-- Full Name -->
+            <div class="input-box">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+                <div class="error-message"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="input-box">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+                <div class="error-message"></div>
+            </div>
+
+            <!-- Phone and Birthdate -->
+            <div class="input-group">
+                <div class="input-box">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number">
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="input-box">
+                    <label for="birthdate">Birth Date</label>
+                    <input type="date" id="birthdate" placeholder="Enter your birth date">
+                    <div class="error-message"></div>
+                </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="gender-box">
+                <h3>Gender</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input type="radio" name="gender" id="male" value="male">
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" name="gender" id="female" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" name="gender" id="other" value="other">
+                        <label for="other">Prefer not to say</label>
+                    </div>
+                </div>
+                <div class="error-message"></div>
+            </div>
+
+            <!-- Address -->
+            <div class="input-box address">
+                <div class="input-box">
+                    <input type="text" placeholder="Enter street address">
+                    <div class="error-message"></div>
+                </div>
+                
+                <div class="input-box">
+                    <input type="text" placeholder="Enter street address line 2">
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="column">
+                    <div class="select-box" id="country">
+                        <select>
+                            <option>Country</option>
+                            <option>Afghanistan</option>
+                            <option>Albania</option>
+                            <option>Algeria</option>
+                            <option>Andorra</option>
+                            <option>Angola</option>
+                            <option>Antigua and Barbuda</option>
+                            <option>Argentina</option>
+                            <option>Armenia</option>
+                            <option>Australia</option>
+                            <option>Austria</option>
+                        </select>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" name="city" id="city" placeholder="Enter your city">
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="input-box">
+                        <input type="text" placeholder="Enter your region">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Enter postal code">
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button>Submit</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

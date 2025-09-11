@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator app</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
+        <header>SAPA PLUG</header>
         <div class="screen">
             <div id="value-display"></div>
             <div id="result-display"></div>
@@ -22,6 +24,13 @@
             <button>√</button>
             <button>(</button>
             <button>)</button>
+            <button>Ans</button>
+            <button>π</button>
+            <button>e</button>
+            <button>exp</button>
+            <button>!</button>
+            <button>mod</button>
+            <button>.</button>
         </div>
         <div class="buttons">
             <div class="row">
@@ -45,70 +54,13 @@
             <div class="row">
                 <button>0</button>
                 <button>C</button>
+                <button>DEL</button>
                 <button>=</button>
                 <button>/</button>
             </div>
         </div>
     </div>
 
-    <script>
-        const valueDisplay = document.getElementById("value-display");
-        const resultDisplay = document.getElementById("result-display");
-        const buttons = document.querySelectorAll("button");
-
-        let expression = "";
-
-        buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            const val = button.innerText;
-
-            if (val === "C") {
-            // Clear everything
-            expression = "";
-            valueDisplay.innerText = "";
-            resultDisplay.innerText = "";
-            } 
-            else if (val === "=") {
-            try {
-                // Prepare the expression for evaluation
-                let exp = expression
-                // square root → Math.sqrt
-                .replace(/√/g, "Math.sqrt")
-                // exponentiation
-                .replace(/\^/g, "**")
-                // trig (degrees → radians)
-                .replace(/sin\(/g, "Math.sin((Math.PI/180)*")
-                .replace(/cos\(/g, "Math.cos((Math.PI/180)*")
-                .replace(/tan\(/g, "Math.tan((Math.PI/180)*")
-                // logs
-                .replace(/log\(/g, "Math.log10(")
-                .replace(/ln\(/g, "Math.log(");
-
-                let result = eval(exp);
-                resultDisplay.innerText = result;
-            } catch {
-                resultDisplay.innerText = "Error";
-            }
-            } 
-            else if (val === "( )") {
-            // Insert empty parentheses
-            expression += "()";
-            valueDisplay.innerText = expression;
-            } 
-            else if (["sin","cos","tan","log","ln"].includes(val)) {
-            // Auto-insert "(" after functions
-            expression += val + "(";
-            valueDisplay.innerText = expression;
-            } 
-            else {
-            // Normal input (numbers, operators, etc.)
-            expression += val;
-            valueDisplay.innerText = expression;
-            }
-        });
-        });
-
-    </script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
